@@ -10,7 +10,7 @@ public class Encomenda {
 	private ArrayList<Produto> produtos;
 	private double valorTotal;
 	
-	public Encomenda(String nome, String end, ArrayList<Produto> produtos, double valorTotal) {
+	public Encomenda(String nome, String end, ArrayList<Produto> produtos, double valorTotal   ) {
 		this.nomeCliente = nome;
 		this.endEntrega = end;
 		this.produtos = produtos;
