@@ -1,5 +1,9 @@
 package bean;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Encomenda {
@@ -7,16 +11,59 @@ public class Encomenda {
 	private int idEncomenda;
 	private String nomeCliente;
 	private String endEntrega;
-	private ArrayList<Produto> produtos;
+	private Produto produto;
 	private double valorTotal;
 	
-	public Encomenda(String nome, String end, ArrayList<Produto> produtos, double valorTotal   ) {
+	public Encomenda(String nome, String end, Produto produtos, double valorTotal) {
 		this.nomeCliente = nome;
 		this.endEntrega = end;
-		this.produtos = produtos;
+		this.produto = produtos;
 		this.valorTotal = valorTotal;
-		
 	}
+	
+	public void addEncomenda() throws ClassNotFoundException, SQLException {
+
+		String url = "jdbc:postgresql://localhost:5432/Cadastro";
+		Class.forName("org.postgresql.Driver");
+		Connection cnx = DriverManager.getConnection(url, "postgres", "feevale");
+		System.out.println("Conexгo ao Banco de Dados foi efetuada com sucesso!");
+
+		try {
+
+			StringBuilder cmd = new StringBuilder();
+			cmd.append("insert into Encomenda\n");
+			cmd.append("( nomeCliente, endEntrega, produto, valorTotal )\n");
+			cmd.append("values\n");
+			cmd.append("( ? , ?, ?, ? )");
+
+			try {
+
+				PreparedStatement st = cnx.prepareStatement(cmd.toString());
+
+				st.setString(1, getNomeCliente());
+				st.setString(2, getEndEntrega());
+				st.setString(3, produto.getCdProduto());
+				st.setDouble(4, getValorTotal());
+
+				boolean status = st.execute();
+
+				System.out.println("O comando insert foi executado com status: " + status);
+			} catch (SQLException e) {
+				System.out.println("Houve erro na execuзгo do comando insert");
+				System.out.println(e.getMessage());
+				System.out.println("Cуdigo de erro: " + e.getSQLState());
+			}
+		} finally {
+			cnx.close();
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
 
 	public int getIdEncomenda() {
 		return idEncomenda;
@@ -42,12 +89,12 @@ public class Encomenda {
 		this.endEntrega = endEntrega;
 	}
 
-	public ArrayList<Produto> getProdutos() {
-		return produtos;
+	public Produto getProduto() {
+		return produto;
 	}
 
-	public void setProdutos(ArrayList<Produto> produtos) {
-		this.produtos = produtos;
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 
 	public double getValorTotal() {
