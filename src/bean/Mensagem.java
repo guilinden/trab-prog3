@@ -20,9 +20,9 @@ public class Mensagem {
 
 	public void addMensagem() throws ClassNotFoundException, SQLException {
 
-		String url = "jdbc:postgresql://localhost:5432/Cadastro";
+		String url = "jdbc:postgresql://localhost:5432/trab-prog3";
 		Class.forName("org.postgresql.Driver");
-		Connection cnx = DriverManager.getConnection(url, "postgres", "feevale");
+		Connection cnx = DriverManager.getConnection(url, "postgres", "tca123");
 		System.out.println("Conexгo ao Banco de Dados foi efetuada com sucesso!");
 
 		try {
