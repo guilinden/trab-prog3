@@ -29,7 +29,7 @@ public class Produto {
 		try {
 
 			StringBuilder cmd = new StringBuilder();
-			cmd.append("insert into Produto\n");
+			cmd.append("insert into public.'Produtos'\n");
 			cmd.append("( cdProduto, nmProduto, qtEstoque, valor )\n");
 			cmd.append("values\n");
 			cmd.append("( ? , ?, ?, ? )");

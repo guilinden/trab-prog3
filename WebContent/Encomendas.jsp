@@ -2,7 +2,6 @@
 
 <%@page import="java.sql.SQLException"%>
 <%@page import="bean.Produto"%>
-<%@page import="bean.Encomenda"%>
 <%
 
 
