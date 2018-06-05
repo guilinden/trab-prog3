@@ -5,7 +5,7 @@
 <%
 
 
-Produto p1 = new Produto("x123", "mesa", 1, 198.24);
+Produto p1 = new Produto("x123", "mesa", 1, 198);
 p1.addProduto();
 
 %>
