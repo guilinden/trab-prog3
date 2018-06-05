@@ -49,4 +49,41 @@ public class SelectStatements {
 		
 	}
 
+	public Produto getOneProduto(String id) throws ClassNotFoundException, SQLException{
+		String url = "jdbc:postgresql://localhost:5432/trab-prog3";
+		Class.forName("org.postgresql.Driver");
+		Connection cnx = DriverManager.getConnection(url, "postgres", "tca123");
+		System.out.println("Conexгo ao Banco de Dados foi efetuada com sucesso!");
+			StringBuilder cmd = new StringBuilder();
+			cmd.append("select * from \"Produtos\" WHERE \"cdProduto\" = ?");
+			
+			Produto p1 = new Produto("","",0,0.0);
+			
+			try {
+
+				PreparedStatement st = cnx.prepareStatement(cmd.toString());
+				st.setString(1, id);
+
+				ResultSet resultList = st.executeQuery();
+				
+				
+				
+				while(resultList.next()){
+					p1.setCdProduto(resultList.getString("cdProduto"));
+					p1.setNomeProduto(resultList.getString("nomeProduto"));
+					p1.setQtEstoque(resultList.getInt("qtEstoque"));
+					p1.setValor(resultList.getDouble("valor"));
+				}
+
+	
+			} catch (SQLException e) {
+				System.out.println("Houve erro na execuзгo do comando insert");
+				System.out.println(e.getMessage());
+				System.out.println("Cуdigo de erro: " + e.getSQLState());
+			}
+			return p1;
+		
+	}
+	
+	
 }

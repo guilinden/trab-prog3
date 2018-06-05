@@ -8,6 +8,9 @@
 
 <%
 String idProduto = request.getParameter("idProduto");
+
+SelectStatements s1 = new SelectStatements();
+Produto produto = s1.getOneProduto(idProduto);
 %>
 
 <html>
@@ -18,9 +21,15 @@ String idProduto = request.getParameter("idProduto");
 		<h3>Guns and Ammo</h3>
 		
 		<h2>Complete sua compra!</h2>
-		<h3><%=idProduto%></h3>
+		<h3><%=produto.getNomeProduto()%></h3>
+		<h3>$<%=produto.getValor()%></h3>
 		<form>
-			First name:<input type="text">
+			Full name:<input type="text"><br/><br/>
+			Complete address:<input type="text"><br/><br/>
+			Card Number:<input type="text"><br/><br/>
+			CVC:<input type="text"><br/><br/>
+			Expiration day:<input type="text"><br/><br/>
+			<button type=submit>Finish</button>
 		</form>
 
 	</body>
