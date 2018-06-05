@@ -6,10 +6,7 @@
 <%@page import="bean.Produto"%>
 <%@page import="java.util.ArrayList"%>
 
-<%
-//Produto p1 = new Produto("pt838","Pistola PT 838 380 AUTO",2,4500);
-//p1.addProduto();
-%>
+
 
 <html>
 	<head>
