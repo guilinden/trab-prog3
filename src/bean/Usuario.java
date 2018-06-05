@@ -27,8 +27,8 @@ public class Usuario {
 		try {
 
 			StringBuilder cmd = new StringBuilder();
-			cmd.append("insert into Usuario\n");
-			cmd.append("( nome, senha )\n");
+			cmd.append("insert into \"Usuario\"\n");
+			cmd.append("( \"nome\", \"senha\" )\n");
 			cmd.append("values\n");
 			cmd.append("( ? , ? )");
 

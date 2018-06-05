@@ -1,5 +1,6 @@
 package bean;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -29,8 +30,8 @@ public class Produto {
 		try {
 
 			StringBuilder cmd = new StringBuilder();
-			cmd.append("insert into public.'Produtos'\n");
-			cmd.append("( cdProduto, nmProduto, qtEstoque, valor )\n");
+			cmd.append("insert into \"Produtos\"\n");
+			cmd.append("( \"cdProduto\", \"nomeProduto\", \"qtEstoque\", \"valor\" )\n");
 			cmd.append("values\n");
 			cmd.append("( ? , ?, ?, ? )");
 

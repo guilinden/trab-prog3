@@ -1,13 +1,11 @@
 
 
+<%@page import="bean.Produto"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="bean.Produto"%>
 <%
-
-
-Produto p1 = new Produto("x123", "mesa", 1, 198);
+Produto p1 = new Produto("pt838","Pistola PT 838 380 AUTO",2,4500);
 p1.addProduto();
-
 %>
 
 <html>

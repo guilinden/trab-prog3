@@ -28,8 +28,8 @@ public class Mensagem {
 		try {
 
 			StringBuilder cmd = new StringBuilder();
-			cmd.append("insert into Mensagem\n");
-			cmd.append("( nome, email, texto )\n");
+			cmd.append("insert into \"Mensagem\"\n");
+			cmd.append("( \"nome\", \"email\", \"texto\" )\n");
 			cmd.append("values\n");
 			cmd.append("( ? , ?, ? )");
 
