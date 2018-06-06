@@ -48,7 +48,7 @@
 		}
 		
 		%>
-		
+		<a href="mensagem.jsp"><h2>Entre em contato</h2></a>
 
 	</body>
 	<style>
