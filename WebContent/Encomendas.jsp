@@ -34,12 +34,28 @@
 				preco = p.getValor();
 				id = p.getCdProduto();
 		%>
+		<form method= "POST">
 		<figure>
 			<img src="http://via.placeholder.com/300x250" id="produto3">
 			<figcaption><%=nome%></figcaption>
 			<figcaption>$<%=preco%></figcaption>
-			<figcaption><button onclick="location.href = 'cadastroEncomenda.jsp?idProduto=<%=id%>';" class="botaoComprar">Comprar</button></figcaption>
+			<figcaption>
+            		Quantidade: <input id="value" class="quantity" type="text" name="quantity" value="1"/>
+        	</figcaption>
+			<figcaption><input type="submit" value="submit" name="submit"></figcaption>
+			<%
+			if(request.getParameter("submit") != null){
+        		String quant = request.getParameter("quantity");
+        		%>
+				<script>
+					window.location.replace("http://localhost:8080/ProjetoFinal/cadastroEncomenda.jsp?idProduto=<%=p.getCdProduto()%>&quant=<%=request.getParameter("quantity")%>");
+				</script>
+				<%
+			}
+        	%>
 		</figure>
+		</form>
+		
 		
 		<%
 			
@@ -51,6 +67,7 @@
 		<a href="mensagem.jsp"><h2>Entre em contato</h2></a>
 
 	</body>
+	
 	<style>
 		img{
 			margin-right: 20px;

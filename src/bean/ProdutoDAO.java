@@ -133,12 +133,16 @@ public class ProdutoDAO {
 		
 	}
 	
-	public static void deduzirEstoque(Produto p) throws ClassNotFoundException, SQLException, IOException {
+	public static void deduzirEstoque(Produto p,int quantidade) throws ClassNotFoundException, SQLException, IOException {
 
 		PoolDeConexoes pool = PoolDeConexoes.getInstance();
 		Conexao cnx = pool.getConexao();
+		
 
+		
 		try {
+			
+			
 
 			StringBuilder cmd = new StringBuilder();
 			cmd.append("update \"Produtos\"\n");
@@ -149,7 +153,7 @@ public class ProdutoDAO {
 
 				PreparedStatement st = cnx.prepareStatement(cmd.toString());
 
-				st.setInt(1, p.getQtEstoque()-1);
+				st.setInt(1, p.getQtEstoque()-quantidade);
 				st.setString(2, p.getCdProduto());
 				
 				boolean status = st.execute();
