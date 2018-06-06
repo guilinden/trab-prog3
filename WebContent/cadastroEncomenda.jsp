@@ -42,6 +42,17 @@ String address = request.getParameter("address");
 					encomenda.addEncomenda();
 				} catch(Exception e) {
 					e.printStackTrace();
+					%><script type="text/javascript">
+					window.alert("Erro ao finalizar compra!");
+					window.location.replace("http://localhost:8080/ProjetoFinal/Encomendas.jsp");
+					</script><%
+				}
+				
+				finally{
+					%><script type="text/javascript">
+					window.alert("Compra finalizada com sucesso!");
+					window.location.replace("http://localhost:8080/ProjetoFinal/Encomendas.jsp");
+					</script><%
 				}
 			}
 			%>
