@@ -13,7 +13,7 @@ import bean.SGBD.PoolDeConexoes;
 
 public class ProdutoDAO {
 	
-	
+	public ProdutoDAO() {}
 	
 	public static void addProduto(Produto p) throws ClassNotFoundException, SQLException, IOException {
 
@@ -158,7 +158,7 @@ public class ProdutoDAO {
 			} catch (SQLException e) {
 				System.out.println("Houve erro na execuзгo do comando insert");
 				System.out.println(e.getMessage());
-				System.out.println("Cуdigo de erro: " + e.getSQLState());
+				System.out.println("Codigo de erro: " + e.getSQLState());
 			}
 		} finally {
 			cnx.libera();

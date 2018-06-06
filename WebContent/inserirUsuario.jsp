@@ -16,7 +16,7 @@
 		    		String username = request.getParameter("username");
 		    		String password = request.getParameter("password");
 		    		Usuario usuario = new Usuario(username,password);
-		    		UsuarioDAO.insere(usuario);
+		    		UsuarioDAO.addUsuario(usuario);
 		    			
 		    		    %>
 		    		    <script>
