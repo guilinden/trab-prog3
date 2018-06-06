@@ -137,9 +137,7 @@ public class SelectStatements {
 			StringBuilder cmd = new StringBuilder();
 			cmd.append("select * from \"Encomendas\" WHERE \"idEncomenda\" = ?");
 			
-			Produto p1 = new Produto("","",0,0.0);
 			
-			Encomenda e1 = new Encomenda("tetet","",p1,0.0);
 			
 			try {
 
@@ -158,11 +156,17 @@ public class SelectStatements {
 					double valorTotalTemp = resultList.getDouble("valorTotal");	
 					int cod = resultList.getInt("idEncomenda");
 					
+					Produto p1 = new Produto("","",0,0.0);
+					
+					Encomenda e1 = new Encomenda("tetet","",p1,0.0);
+					
 					e1.setNomeCliente(nomeClienteTemp);
 					e1.setIdEncomenda(cod);
 					e1.setEndEntrega(endEntregaTemp);
 					e1.setValorTotal(valorTotalTemp);
 					e1.setProduto(produto1);
+					
+					return e1;
 				}
 
 	
@@ -171,7 +175,7 @@ public class SelectStatements {
 				System.out.println(e.getMessage());
 				System.out.println("Cуdigo de erro: " + e.getSQLState());
 			}
-			return e1;
+			return null;
 		
 	}
 	
