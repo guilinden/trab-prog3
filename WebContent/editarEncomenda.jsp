@@ -1,5 +1,4 @@
-<%@page import="bean.UpdateStatements"%>
-<%@page import="bean.SelectStatements"%>
+<%@page import="bean.EncomendaDAO"%>
 <%@page import="bean.Encomenda"%>
 <html>
 	<head></head>
@@ -18,8 +17,8 @@
 			String codigo = request.getParameter("idEncomenda");
 			int codigoInt = Integer.parseInt(codigo);
 
-			SelectStatements select = new SelectStatements();
-			Encomenda e1 = select.getOneEncomenda(codigoInt);
+			
+			Encomenda e1 = EncomendaDAO.getOneEncomenda(codigoInt);
 		%>
 		<a href="logout.jsp"><h3>Logout</h3></a>
 		<h1>Edição de Encomenda</h1></br>
@@ -51,8 +50,7 @@
 					String endereco = request.getParameter("endereco");
 					e1.setNomeCliente(nomeCliente);
 					e1.setEndEntrega(endereco);
-					UpdateStatements update = new UpdateStatements();
-					update.updateEncomenda(e1);
+					EncomendaDAO.updateEncomenda(e1);
 					%>
 					<script>
 						window.alert("Editado com Sucesso");

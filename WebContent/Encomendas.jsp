@@ -1,6 +1,7 @@
 
 
-<%@page import="bean.SelectStatements"%>
+<%@page import="bean.ProdutoDAO"%>
+<%@page import="bean.EncomendaDAO"%>
 <%@page import="bean.Produto"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="bean.Produto"%>
@@ -18,9 +19,9 @@
 	
 		
 		
-		SelectStatements s1 = new SelectStatements();
+		
 		ArrayList<Produto> list = new ArrayList<Produto>();
-		list = s1.ArrayList();
+		list = ProdutoDAO.ArrayList();
 
 		String nome = "";
 		Double preco = 0.0;

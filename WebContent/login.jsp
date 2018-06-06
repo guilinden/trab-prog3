@@ -1,3 +1,4 @@
+<%@page import="bean.UsuarioDAO"%>
 <%@page import="bean.Usuario"%>
 <html>
 <%
@@ -14,8 +15,7 @@
 		    	if(request.getParameter("submit") != null){
 		    		String username = request.getParameter("username");
 		    		String password = request.getParameter("password");
-		    		Usuario user = new Usuario(username,password);
-		    		Usuario userFinal = user.find(user.getNome(), user.getSenha());
+		    		Usuario userFinal = UsuarioDAO.find(username, password);
 		    		
 		    		if (userFinal != null) {
 		    		    request.getSession().setAttribute("user", userFinal.getNome()); // Put user in session.

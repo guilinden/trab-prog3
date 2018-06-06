@@ -1,18 +1,17 @@
 
 
-<%@page import="bean.UpdateStatements"%>
+<%@page import="bean.ProdutoDAO"%>
 <%@page import="bean.Encomenda"%>
-<%@page import="bean.SelectStatements"%>
 <%@page import="bean.Produto"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="bean.Produto"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="bean.EncomendaDAO"%>
 
 <%
 String idProduto = request.getParameter("idProduto");
 
-SelectStatements s1 = new SelectStatements();
-Produto produto = s1.getOneProduto(idProduto);
+Produto produto = ProdutoDAO.getOneProduto(idProduto);
 
 String fullName = request.getParameter("fullName");
 String address = request.getParameter("address");
@@ -40,9 +39,8 @@ String address = request.getParameter("address");
 
 				try {
 					Encomenda encomenda = new Encomenda(fullName,address, produto, produto.getValor());
-					encomenda.addEncomenda();
-					UpdateStatements update = new UpdateStatements();
-					update.deduzirEstoque(produto);
+					EncomendaDAO.addEncomenda(encomenda);
+					ProdutoDAO.deduzirEstoque(produto);
 					
 				} catch(Exception e) {
 					e.printStackTrace();

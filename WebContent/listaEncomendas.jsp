@@ -1,6 +1,6 @@
 
 
-<%@page import="bean.SelectStatements"%>
+<%@page import="bean.EncomendaDAO"%>
 <%@page import="bean.Produto"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="bean.Encomenda"%>
@@ -25,10 +25,9 @@
 			</script>
 			<%
 		}
-		
-		SelectStatements s1 = new SelectStatements();
+
 		ArrayList<Encomenda> list = new ArrayList<Encomenda>();
-		list = s1.ListaEncomendas();
+		list = EncomendaDAO.ListaEncomendas();
 
 		String nome = "";
 		Double preco = 0.0;

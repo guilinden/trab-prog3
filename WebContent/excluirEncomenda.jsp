@@ -1,4 +1,4 @@
-<%@page import="bean.SelectStatements"%>
+<%@page import="bean.EncomendaDAO"%>
 <%@page import="bean.Encomenda"%>
 <html>
 <%
@@ -14,11 +14,10 @@ if(session.getAttribute("user") == null){
 	String codigo = request.getParameter("idEncomenda");
 	
 	int codigoInt = Integer.parseInt(codigo);
+	Encomenda e1 = EncomendaDAO.getOneEncomenda(codigoInt);
 
-	SelectStatements select = new SelectStatements();
-	Encomenda e1 = select.getOneEncomenda(codigoInt);
-
-	e1.deleteEncomenda();
+	EncomendaDAO.deleteEncomenda(e1);
+	
 	%><script type="text/javascript">
 	window.alert("Delete realizado com sucesso!");
 	window.location.replace("http://localhost:8080/ProjetoFinal/listaEncomendas.jsp");
