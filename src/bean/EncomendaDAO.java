@@ -1,5 +1,6 @@
 package bean;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,14 +8,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import bean.SGBD.Conexao;
+import bean.SGBD.PoolDeConexoes;
+
 public class EncomendaDAO {
 
-	public static void addEncomenda(Encomenda e1) throws ClassNotFoundException, SQLException {
+	public static void addEncomenda(Encomenda e1) throws ClassNotFoundException, SQLException, IOException {
 
-		String url = "jdbc:postgresql://localhost:5432/trab-prog3";
-		Class.forName("org.postgresql.Driver");
-		Connection cnx = DriverManager.getConnection(url, "postgres", "tca123");
-		System.out.println("Conexгo ao Banco de Dados foi efetuada com sucesso!");
+		PoolDeConexoes pool = PoolDeConexoes.getInstance();
+ 		Conexao cnx = pool.getConexao();
 
 		try {
 
@@ -42,16 +44,14 @@ public class EncomendaDAO {
 				System.out.println("Cуdigo de erro: " + e.getSQLState());
 			}
 		} finally {
-			cnx.close();
+			cnx.libera();
 		}
 	}
 	
-	public static void deleteEncomenda(Encomenda e1) throws ClassNotFoundException, SQLException {
+	public static void deleteEncomenda(Encomenda e1) throws ClassNotFoundException, SQLException, IOException {
 
-		String url = "jdbc:postgresql://localhost:5432/trab-prog3";
-		Class.forName("org.postgresql.Driver");
-		Connection cnx = DriverManager.getConnection(url, "postgres", "tca123");
-		System.out.println("Conexгo ao Banco de Dados foi efetuada com sucesso!");
+		PoolDeConexoes pool = PoolDeConexoes.getInstance();
+ 		Conexao cnx = pool.getConexao();
 
 		try {
 
@@ -74,16 +74,16 @@ public class EncomendaDAO {
 				System.out.println("Cуdigo de erro: " + e.getSQLState());
 			}
 		} finally {
-			cnx.close();
+			cnx.libera();
 		}
 	}
 	
 
-	public static Encomenda getOneEncomenda(int id) throws ClassNotFoundException, SQLException{
-		String url = "jdbc:postgresql://localhost:5432/trab-prog3";
-		Class.forName("org.postgresql.Driver");
-		Connection cnx = DriverManager.getConnection(url, "postgres", "tca123");
-		System.out.println("Conexгo ao Banco de Dados foi efetuada com sucesso!");
+	public static Encomenda getOneEncomenda(int id) throws ClassNotFoundException, SQLException, IOException{
+		
+		PoolDeConexoes pool = PoolDeConexoes.getInstance();
+ 		Conexao cnx = pool.getConexao();
+		
 			StringBuilder cmd = new StringBuilder();
 			cmd.append("select * from \"Encomendas\" WHERE \"idEncomenda\" = ?");
 			
@@ -124,16 +124,18 @@ public class EncomendaDAO {
 				System.out.println("Houve erro na execuзгo do comando select");
 				System.out.println(e.getMessage());
 				System.out.println("Cуdigo de erro: " + e.getSQLState());
+			}finally {
+				cnx.libera();
 			}
 			return null;
 		
 	}
 	
-	public static ArrayList<Encomenda> ListaEncomendas() throws ClassNotFoundException, SQLException {
-		String url = "jdbc:postgresql://localhost:5432/trab-prog3";
-		Class.forName("org.postgresql.Driver");
-		Connection cnx = DriverManager.getConnection(url, "postgres", "tca123");
-		System.out.println("Conexгo ao Banco de Dados foi efetuada com sucesso!");
+	public static ArrayList<Encomenda> ListaEncomendas() throws ClassNotFoundException, SQLException, IOException {
+		
+		PoolDeConexoes pool = PoolDeConexoes.getInstance();
+ 		Conexao cnx = pool.getConexao();
+		
 			StringBuilder cmd = new StringBuilder();
 			cmd.append("select * from \"Encomendas\"");
 			ArrayList<Encomenda> list = new ArrayList<Encomenda>();
@@ -166,17 +168,17 @@ public class EncomendaDAO {
 				System.out.println("Houve erro na execuзгo do comando insert");
 				System.out.println(e.getMessage());
 				System.out.println("Cуdigo de erro: " + e.getSQLState());
+			}finally {
+				cnx.libera();
 			}
 			return list;
 		
 	}
 	
-	public static void updateEncomenda(Encomenda e) throws ClassNotFoundException, SQLException {
+	public static void updateEncomenda(Encomenda e) throws ClassNotFoundException, SQLException, IOException {
 
-		String url = "jdbc:postgresql://localhost:5432/trab-prog3";
-		Class.forName("org.postgresql.Driver");
-		Connection cnx = DriverManager.getConnection(url, "postgres", "tca123");
-		System.out.println("Conexгo ao Banco de Dados foi efetuada com sucesso!");
+		PoolDeConexoes pool = PoolDeConexoes.getInstance();
+ 		Conexao cnx = pool.getConexao();
 
 		try {
 
@@ -202,7 +204,7 @@ public class EncomendaDAO {
 				System.out.println("Cуdigo de erro: " + e1.getSQLState());
 			}
 		} finally {
-			cnx.close();
+			cnx.libera();
 		}
 	}
 

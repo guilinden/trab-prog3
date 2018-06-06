@@ -1,18 +1,21 @@
 package bean;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import bean.SGBD.Conexao;
+import bean.SGBD.PoolDeConexoes;
+
 import java.sql.PreparedStatement;
 
 public class MensagemDAO{
 	
-	public static void addMensagem(Mensagem m1) throws ClassNotFoundException, SQLException {
+	public static void addMensagem(Mensagem m1) throws ClassNotFoundException, SQLException, IOException {
 		
-		String url = "jdbc:postgresql://localhost:5432/trab-prog3";
-		Class.forName("org.postgresql.Driver");
-		Connection cnx = DriverManager.getConnection(url, "postgres", "tca123");
-		System.out.println("Conexгo ao Banco de Dados foi efetuada com sucesso!");
+		PoolDeConexoes pool = PoolDeConexoes.getInstance();
+ 		Conexao cnx = pool.getConexao();
 		
 		try {
 			
@@ -39,7 +42,7 @@ public class MensagemDAO{
 				System.out.println("Cуdigo de erro: " + e.getSQLState());	
 			}
 		}finally {
-			cnx.close();
+			cnx.libera();
 		}
 	}
 	

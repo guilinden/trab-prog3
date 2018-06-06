@@ -1,5 +1,6 @@
 package bean;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,16 +8,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import bean.SGBD.Conexao;
+import bean.SGBD.PoolDeConexoes;
+
 public class ProdutoDAO {
 	
 	
 	
-	public static void addProduto(Produto p) throws ClassNotFoundException, SQLException {
+	public static void addProduto(Produto p) throws ClassNotFoundException, SQLException, IOException {
 
-		String url = "jdbc:postgresql://localhost:5432/trab-prog3";
-		Class.forName("org.postgresql.Driver");
-		Connection cnx = DriverManager.getConnection(url, "postgres", "tca123");
-		System.out.println("Conexгo ao Banco de Dados foi efetuada com sucesso!");
+		PoolDeConexoes pool = PoolDeConexoes.getInstance();
+ 		Conexao cnx = pool.getConexao();
 
 		try {
 
@@ -44,16 +46,16 @@ public class ProdutoDAO {
 				System.out.println("Cуdigo de erro: " + e.getSQLState());
 			}
 		} finally {
-			cnx.close();
+			cnx.libera();
 		}
 	}
 	
 
-	public static Produto getOneProduto(String id) throws ClassNotFoundException, SQLException{
-		String url = "jdbc:postgresql://localhost:5432/trab-prog3";
-		Class.forName("org.postgresql.Driver");
-		Connection cnx = DriverManager.getConnection(url, "postgres", "tca123");
-		System.out.println("Conexгo ao Banco de Dados foi efetuada com sucesso!");
+	public static Produto getOneProduto(String id) throws ClassNotFoundException, SQLException, IOException{
+			
+			PoolDeConexoes pool = PoolDeConexoes.getInstance();
+			Conexao cnx = pool.getConexao();
+		
 			StringBuilder cmd = new StringBuilder();
 			cmd.append("select * from \"Produtos\" WHERE \"cdProduto\" = ?");
 			
@@ -82,16 +84,18 @@ public class ProdutoDAO {
 				System.out.println("Houve erro na execuзгo do comando select");
 				System.out.println(e.getMessage());
 				System.out.println("Cуdigo de erro: " + e.getSQLState());
+			}finally {
+				cnx.libera();
 			}
 			return null;
 		
 	}
 	
-	public static ArrayList<Produto> ArrayList() throws ClassNotFoundException, SQLException {
-		String url = "jdbc:postgresql://localhost:5432/trab-prog3";
-		Class.forName("org.postgresql.Driver");
-		Connection cnx = DriverManager.getConnection(url, "postgres", "tca123");
-		System.out.println("Conexгo ao Banco de Dados foi efetuada com sucesso!");
+	public static ArrayList<Produto> ArrayList() throws ClassNotFoundException, SQLException, IOException {
+		
+			PoolDeConexoes pool = PoolDeConexoes.getInstance();
+			Conexao cnx = pool.getConexao();
+		
 			StringBuilder cmd = new StringBuilder();
 			cmd.append("select * from \"Produtos\"");
 			ArrayList<Produto> list = new ArrayList<Produto>();
@@ -122,17 +126,17 @@ public class ProdutoDAO {
 				System.out.println("Houve erro na execuзгo do comando insert");
 				System.out.println(e.getMessage());
 				System.out.println("Cуdigo de erro: " + e.getSQLState());
+			}finally {
+				cnx.libera();
 			}
 			return list;
 		
 	}
 	
-	public static void deduzirEstoque(Produto p) throws ClassNotFoundException, SQLException {
+	public static void deduzirEstoque(Produto p) throws ClassNotFoundException, SQLException, IOException {
 
-		String url = "jdbc:postgresql://localhost:5432/trab-prog3";
-		Class.forName("org.postgresql.Driver");
-		Connection cnx = DriverManager.getConnection(url, "postgres", "tca123");
-		System.out.println("Conexгo ao Banco de Dados foi efetuada com sucesso!");
+		PoolDeConexoes pool = PoolDeConexoes.getInstance();
+		Conexao cnx = pool.getConexao();
 
 		try {
 
@@ -157,7 +161,7 @@ public class ProdutoDAO {
 				System.out.println("Cуdigo de erro: " + e.getSQLState());
 			}
 		} finally {
-			cnx.close();
+			cnx.libera();
 		}
 	}
 }
