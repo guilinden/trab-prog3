@@ -5,12 +5,23 @@
 	<head></head>
 	<body>
 		<%
+		
+		if(session.getAttribute("user") == null){
+			%>
+			<script>
+				window.alert("Login necessário");
+				window.location.replace("http://localhost:8080/ProjetoFinal/login.jsp");
+			</script>
+			<%
+		}
+		
 			String codigo = request.getParameter("idEncomenda");
 			int codigoInt = Integer.parseInt(codigo);
 
 			SelectStatements select = new SelectStatements();
 			Encomenda e1 = select.getOneEncomenda(codigoInt);
 		%>
+		<a href="logout.jsp"><h3>Logou</h3></a>
 		<h1>Edição de Encomenda</h1></br>
 		<table>
 		<tr>

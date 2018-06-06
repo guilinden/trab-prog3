@@ -2,6 +2,15 @@
 <%@page import="bean.Encomenda"%>
 <html>
 <%
+if(session.getAttribute("user") == null){
+	%>
+	<script>
+		window.alert("Login necessário");
+		window.location.replace("http://localhost:8080/ProjetoFinal/login.jsp");
+	</script>
+	<%
+}
+
 	String codigo = request.getParameter("idEncomenda");
 	
 	int codigoInt = Integer.parseInt(codigo);

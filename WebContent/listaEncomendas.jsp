@@ -5,8 +5,7 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="bean.Encomenda"%>
 <%@page import="java.util.ArrayList"%>
-
-
+<%@page import="javax.servlet.http.*"%>
 
 <html>
 	<head>
@@ -14,9 +13,17 @@
 	<body>
 		<h1>Linden & Co.</h1>
 		<h3>Guns and Ammo</h3>
+		<a href="logout.jsp"><h3>Logout</h3></a>
 		<%
-	
 		
+		if(session.getAttribute("user") == null){
+			%>
+			<script>
+				window.alert("Login necessário");
+				window.location.replace("http://localhost:8080/ProjetoFinal/login.jsp");
+			</script>
+			<%
+		}
 		
 		SelectStatements s1 = new SelectStatements();
 		ArrayList<Encomenda> list = new ArrayList<Encomenda>();
