@@ -21,7 +21,7 @@
 			SelectStatements select = new SelectStatements();
 			Encomenda e1 = select.getOneEncomenda(codigoInt);
 		%>
-		<a href="logout.jsp"><h3>Logou</h3></a>
+		<a href="logout.jsp"><h3>Logout</h3></a>
 		<h1>Edição de Encomenda</h1></br>
 		<table>
 		<tr>
