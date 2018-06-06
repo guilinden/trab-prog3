@@ -30,6 +30,7 @@
 		String nome = "";
 		String texto  = "";
 		String email = "";
+		int id;
 		%>
 		<br>
 		<h1>Lista de mensagens</h1>
@@ -48,15 +49,16 @@
 			
 				nome = m.getNome();
 				texto = m.getTexto();
-				email = m.getEmail();				
+				email = m.getEmail();
+				id = m.getId();
 		%>
 		
 		<tr>
     		<td><%=nome%></td>
     		<td><%=texto%></td> 
     		<td><%=email%></td>
-    		<td><a href="excluirMensagem.jsp?idEncomenda=<%=m.getId()%>">Exluir</a></td>
-    		<td><a href="editarMensagem.jsp?idEncomenda=<%=m.getId()%>">Editar</a></td>
+    		<td><a href="excluirMensagem.jsp?id=<%=id%>">Exluir</a></td>
+    		<td><a href="editarMensagem.jsp?id=<%=m.getId()%>">Editar</a></td>
   		</tr>
 		
 		

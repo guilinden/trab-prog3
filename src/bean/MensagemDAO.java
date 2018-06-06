@@ -46,6 +46,7 @@ public class MensagemDAO{
 		}finally {
 			cnx.libera();
 		}
+	}
 		
 		public static ArrayList<Mensagem> ListaMensagens() throws SQLException, IOException{
 			
@@ -71,8 +72,12 @@ public class MensagemDAO{
 						String textoTemp = resultList.getString("texto");
 						String emailTemp = resultList.getString("email");	
 						
+						int id = resultList.getInt("id");
 						Mensagem m1 = new Mensagem(nomeClienteTemp, textoTemp, emailTemp);
+						m1.setId(id);
 						list.add(m1);
+						
+						
 						
 					}
 
@@ -88,8 +93,78 @@ public class MensagemDAO{
 			
 		}
 	
+		public static void deleteMensagem(Mensagem m1) throws ClassNotFoundException, SQLException, IOException {
 
+			PoolDeConexoes pool = PoolDeConexoes.getInstance();
+	 		Conexao cnx = pool.getConexao();
 
-	
-	
+			try {
+
+				StringBuilder cmd = new StringBuilder();
+				cmd.append("delete from \"Mensagens\"\n");
+				cmd.append("where \"id\" = ?\n");
+
+				try {
+
+					PreparedStatement st = cnx.prepareStatement(cmd.toString());
+
+					st.setInt(1, m1.getId());
+
+					boolean status = st.execute();
+
+					System.out.println("O comando delete foi executado com status: " + status);
+				} catch (SQLException e) {
+					System.out.println("Houve erro na execuзгo do comando insert");
+					System.out.println(e.getMessage());
+					System.out.println("Cуdigo de erro: " + e.getSQLState());
+				}
+			} finally {
+				cnx.libera();
+			}
+		}
+		
+		public static Mensagem getOneMensagem(int id) throws ClassNotFoundException, SQLException, IOException{
+			
+			PoolDeConexoes pool = PoolDeConexoes.getInstance();
+	 		Conexao cnx = pool.getConexao();
+			
+				StringBuilder cmd = new StringBuilder();
+				cmd.append("select * from \"Mensagens\" WHERE \"id\" = ?");
+				
+				
+				
+				try {
+
+					PreparedStatement st = cnx.prepareStatement(cmd.toString());
+					st.setInt(1, id);
+
+					ResultSet resultList = st.executeQuery();
+					
+					
+					
+					while(resultList.next()){
+												
+						String nomeClienteTemp = resultList.getString("nome");
+						String textoTemp = resultList.getString("texto");
+						String emailTemp = resultList.getString("email");	
+						int cod = resultList.getInt("id");
+						
+						Mensagem m1 = new Mensagem(nomeClienteTemp, textoTemp, emailTemp);
+						m1.setId(id);
+						return m1;
+					}
+
+		
+				} catch (SQLException e) {
+					System.out.println("Houve erro na execuзгo do comando select");
+					System.out.println(e.getMessage());
+					System.out.println("Cуdigo de erro: " + e.getSQLState());
+				}finally {
+					cnx.libera();
+				}
+				return null;
+			
+		}
+		
+
 }
