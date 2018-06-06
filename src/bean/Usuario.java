@@ -3,6 +3,7 @@ package bean;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Usuario {
@@ -51,6 +52,40 @@ public class Usuario {
 			cnx.close();
 		}
 	}
+	
+	public Usuario find(String user,String senha) throws ClassNotFoundException, SQLException{
+		String url = "jdbc:postgresql://localhost:5432/trab-prog3";
+		Class.forName("org.postgresql.Driver");
+		Connection cnx = DriverManager.getConnection(url, "postgres", "tca123");
+		System.out.println("Conexгo ao Banco de Dados foi efetuada com sucesso!");
+			StringBuilder cmd = new StringBuilder();
+			cmd.append("select * from \"Usuarios\" WHERE \"nome\" = ? AND \"senha\" = ?");
+			
+			try {
+
+				PreparedStatement st = cnx.prepareStatement(cmd.toString());
+				st.setString(1, user);
+				st.setString(2, senha);
+
+				ResultSet resultList = st.executeQuery();
+				
+				
+				
+				if(resultList.next()){
+					Usuario u1 = new Usuario(resultList.getString("nome"), resultList.getString("senha"));
+					return u1;
+				}
+			} catch (SQLException e) {
+				System.out.println("Houve erro na execuзгo do comando select");
+				System.out.println(e.getMessage());
+				System.out.println("Cуdigo de erro: " + e.getSQLState());
+			}
+			
+			return null;
+	}
+	
+	
+	
 	
 	public String getNome() {
 		return nome;

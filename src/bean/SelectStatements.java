@@ -99,7 +99,7 @@ public class SelectStatements {
 			StringBuilder cmd = new StringBuilder();
 			cmd.append("select * from \"Produtos\" WHERE \"cdProduto\" = ?");
 			
-			Produto p1 = new Produto("","",0,0.0);
+			
 			
 			try {
 
@@ -111,10 +111,12 @@ public class SelectStatements {
 				
 				
 				while(resultList.next()){
+					Produto p1 = new Produto("","",0,0.0);
 					p1.setCdProduto(resultList.getString("cdProduto"));
 					p1.setNomeProduto(resultList.getString("nomeProduto"));
 					p1.setQtEstoque(resultList.getInt("qtEstoque"));
 					p1.setValor(resultList.getDouble("valor"));
+					return p1;
 				}
 
 	
@@ -123,7 +125,7 @@ public class SelectStatements {
 				System.out.println(e.getMessage());
 				System.out.println("Cуdigo de erro: " + e.getSQLState());
 			}
-			return p1;
+			return null;
 		
 	}
 	
