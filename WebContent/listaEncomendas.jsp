@@ -14,6 +14,7 @@
 		<h1>Linden & Co.</h1>
 		<h3>Guns and Ammo</h3>
 		<a href="logout.jsp"><h3>Logout</h3></a>
+		<a href="home.jsp"><h3>Home</h3></a>
 		<%
 		
 		if(session.getAttribute("user") == null){
