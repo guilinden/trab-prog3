@@ -31,8 +31,8 @@ public class Encomenda {
 		try {
 
 			StringBuilder cmd = new StringBuilder();
-			cmd.append("insert into \"Encomenda\"\n");
-			cmd.append("( \"nomeCliente\", \"endEntrega\", \"produto\", \"valorTotal\" )\n");
+			cmd.append("insert into \"Encomendas\"\n");
+			cmd.append("( \"nomeCliente\", \"endEntrega\", \"cdProduto\", \"valorTotal\" )\n");
 			cmd.append("values\n");
 			cmd.append("( ? , ?, ?, ? )");
 
