@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import bean.SGBD.Conexao;
 import bean.SGBD.PoolDeConexoes;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class MensagemDAO{
 	
@@ -44,6 +46,50 @@ public class MensagemDAO{
 		}finally {
 			cnx.libera();
 		}
-	}
+		
+		public static ArrayList<Mensagem> ListaMensagens() throws SQLException, IOException{
+			
+			PoolDeConexoes pool = PoolDeConexoes.getInstance();
+	 		Conexao cnx = pool.getConexao();
+			
+				StringBuilder cmd = new StringBuilder();
+				cmd.append("select * from \"Mensagens\"");
+				ArrayList<Mensagem> list = new ArrayList<Mensagem>();
+				
+				try {
+
+					PreparedStatement st = cnx.prepareStatement(cmd.toString());
+
+					ResultSet resultList = st.executeQuery();
+					
+					
+					
+					while(resultList.next()){
+					
+										
+						String nomeClienteTemp = resultList.getString("nome");
+						String textoTemp = resultList.getString("texto");
+						String emailTemp = resultList.getString("email");	
+						
+						Mensagem m1 = new Mensagem(nomeClienteTemp, textoTemp, emailTemp);
+						list.add(m1);
+						
+					}
+
+		
+				} catch (SQLException e) {
+					System.out.println("Houve erro na execuзгo do comando insert");
+					System.out.println(e.getMessage());
+					System.out.println("Cуdigo de erro: " + e.getSQLState());
+				}finally {
+					cnx.libera();
+				}
+				return list;
+			
+		}
+	
+
+
+	
 	
 }

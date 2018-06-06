@@ -17,8 +17,7 @@ public class Mensagem {
 		this.texto = texto;
 		this.email = email;
 	}
-
-		
+	
 	
 	public int getId() {
 		return id;
