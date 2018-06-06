@@ -28,9 +28,10 @@
 		
 		
 		for(Produto p : list){
-			nome = p.getNomeProduto();
-			preco = p.getValor();
-			id = p.getCdProduto();
+			if(p.getQtEstoque() > 0){
+				nome = p.getNomeProduto();
+				preco = p.getValor();
+				id = p.getCdProduto();
 		%>
 		<figure>
 			<img src="http://via.placeholder.com/300x250" id="produto3">
@@ -41,7 +42,7 @@
 		
 		<%
 			
-			
+			}
 			
 		}
 		

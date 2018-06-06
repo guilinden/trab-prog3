@@ -59,6 +59,42 @@ public class Produto {
 		}
 	}
 
+	public void deduzirEstoque() throws ClassNotFoundException, SQLException {
+
+		String url = "jdbc:postgresql://localhost:5432/trab-prog3";
+		Class.forName("org.postgresql.Driver");
+		Connection cnx = DriverManager.getConnection(url, "postgres", "tca123");
+		System.out.println("Conexгo ao Banco de Dados foi efetuada com sucesso!");
+
+		try {
+
+			StringBuilder cmd = new StringBuilder();
+			cmd.append("update \"Produtos\"\n");
+			cmd.append("set \"qtEstoque\" = ?\n");
+			cmd.append("values\n");
+			cmd.append("( ? , ?, ?, ? )");
+
+			try {
+
+				PreparedStatement st = cnx.prepareStatement(cmd.toString());
+
+				st.setString(1, getCdProduto());
+				st.setString(2, getNomeProduto());
+				st.setInt(3, getQtEstoque());
+				st.setDouble(4, getValor());
+
+				boolean status = st.execute();
+
+				System.out.println("O comando insert foi executado com status: " + status);
+			} catch (SQLException e) {
+				System.out.println("Houve erro na execuзгo do comando insert");
+				System.out.println(e.getMessage());
+				System.out.println("Cуdigo de erro: " + e.getSQLState());
+			}
+		} finally {
+			cnx.close();
+		}
+	}
 	
 	
 	

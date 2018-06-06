@@ -1,5 +1,6 @@
 
 
+<%@page import="bean.UpdateStatements"%>
 <%@page import="bean.Encomenda"%>
 <%@page import="bean.SelectStatements"%>
 <%@page import="bean.Produto"%>
@@ -40,6 +41,9 @@ String address = request.getParameter("address");
 				try {
 					Encomenda encomenda = new Encomenda(fullName,address, produto, produto.getValor());
 					encomenda.addEncomenda();
+					UpdateStatements update = new UpdateStatements();
+					update.deduzirEstoque(produto);
+					
 				} catch(Exception e) {
 					e.printStackTrace();
 					%><script type="text/javascript">
