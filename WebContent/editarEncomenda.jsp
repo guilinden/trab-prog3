@@ -53,6 +53,12 @@
 					e1.setEndEntrega(endereco);
 					UpdateStatements update = new UpdateStatements();
 					update.updateEncomenda(e1);
+					%>
+					<script>
+						window.alert("Editado com Sucesso");
+						window.location.replace("http://localhost:8080/ProjetoFinal/listaEncomendas.jsp");
+					</script>
+					<%
 				}
 			%>
 			
