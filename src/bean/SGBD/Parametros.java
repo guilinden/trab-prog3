@@ -29,7 +29,7 @@ public class Parametros {
 
 		if( mySelf == null ) {
 			mySelf = new Parametros();
-			mySelf.loadFromFile( "C:\\Users\\guilinden\\OneDrive\\Documents\\parametros.xml" );
+			mySelf.loadFromFile( "C:\\parametros.xml" );
 		}
 		
 		return mySelf;
