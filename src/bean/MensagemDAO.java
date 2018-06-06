@@ -166,5 +166,38 @@ public class MensagemDAO{
 			
 		}
 		
+		public static void updateMensagem(Mensagem m) throws ClassNotFoundException, SQLException, IOException {
+
+			PoolDeConexoes pool = PoolDeConexoes.getInstance();
+	 		Conexao cnx = pool.getConexao();
+
+			try {
+
+				StringBuilder cmd = new StringBuilder();
+				cmd.append("update \"Mensagens\"\n");
+				cmd.append("set \"nome\" = ?, \"texto\" = ?, \"email\" = ? \n");
+				cmd.append("where \"id\" = ?\n");
+
+				try {
+
+					PreparedStatement st = cnx.prepareStatement(cmd.toString());
+
+					st.setString(1, m.getNome());
+					st.setString(2, m.getTexto());
+					st.setString(3, m.getEmail());
+					st.setInt(4,  m.getId());
+					boolean status = st.execute();
+
+					System.out.println("O comando update foi executado com status: " + status);
+				} catch (SQLException e1) {
+					System.out.println("Houve erro na execuзгo do comando insert");
+					System.out.println(e1.getMessage());
+					System.out.println("Cуdigo de erro: " + e1.getSQLState());
+				}
+			} finally {
+				cnx.libera();
+			}
+		}
+		
 
 }
