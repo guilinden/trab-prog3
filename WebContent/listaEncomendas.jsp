@@ -37,6 +37,7 @@
     		<th>Codigo Produto</th>
     		<th>Valor Total</th>
     		<th></th>
+    		<th></th>
     		
  		 </tr>
 		<%
@@ -57,6 +58,7 @@
     		<td><%=cod%></td>
     		<td><%=preco%></td>
     		<td><a href="excluirEncomenda.jsp?idEncomenda=<%=e.getIdEncomenda()%>">Exluir</a></td>
+    		<td><a href="editarEncomenda.jsp?idEncomenda=<%=e.getIdEncomenda()%>">Editar</a></td>
   		</tr>
 		
 		
