@@ -17,8 +17,8 @@ public class MensagemDAO{
 		try {
 			
 			StringBuilder cmd = new StringBuilder();
-			cmd.append("insert into \"Mensagem\"\n");
-			cmd.append("(\"nome\", \"senha\", \"email\")\n");
+			cmd.append("insert into \"Mensagens\"\n");
+			cmd.append("(\"nome\", \"texto\", \"email\")\n");
 			cmd.append("values\n");
 			cmd.append("(? ,? ,?)");
 			
@@ -26,9 +26,9 @@ public class MensagemDAO{
 				
 				PreparedStatement st = cnx.prepareStatement(cmd.toString());
 				
-				st.setString(1,  m1.getEmail());
-				st.setString(2,  m1.getNome());
-				st.setString(3,  m1.getTexto());
+				st.setString(1,  m1.getNome());
+				st.setString(2,  m1.getTexto());
+				st.setString(3,  m1.getEmail());
 				
 				boolean status = st.execute();
 				
