@@ -18,61 +18,7 @@ public class Mensagem {
 		this.email = email;
 	}
 
-	public void addMensagem() throws ClassNotFoundException, SQLException {
-
-		String url = "jdbc:postgresql://localhost:5432/trab-prog3";
-		Class.forName("org.postgresql.Driver");
-		Connection cnx = DriverManager.getConnection(url, "postgres", "tca123");
-		System.out.println("Conexгo ao Banco de Dados foi efetuada com sucesso!");
-
-		try {
-
-			StringBuilder cmd = new StringBuilder();
-			cmd.append("insert into \"Mensagem\"\n");
-			cmd.append("( \"nome\", \"email\", \"texto\" )\n");
-			cmd.append("values\n");
-			cmd.append("( ? , ?, ? )");
-
-			try {
-
-				PreparedStatement st = cnx.prepareStatement(cmd.toString());
-
-				st.setString(1, getNome());
-				st.setString(2, getEmail());
-				st.setString(3, getTexto());
-
-				boolean status = st.execute();
-
-				System.out.println("O comando insert foi executado com status: " + status);
-			} catch (SQLException e) {
-				System.out.println("Houve erro na execuзгo do comando insert");
-				System.out.println(e.getMessage());
-				System.out.println("Cуdigo de erro: " + e.getSQLState());
-			}
-		} finally {
-			cnx.close();
-		}
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	
 	public int getId() {
 		return id;
