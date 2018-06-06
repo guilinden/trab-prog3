@@ -48,6 +48,46 @@ public class SelectStatements {
 			return list;
 		
 	}
+	
+	public ArrayList<Encomenda> ListaEncomendas() throws ClassNotFoundException, SQLException {
+		String url = "jdbc:postgresql://localhost:5432/trab-prog3";
+		Class.forName("org.postgresql.Driver");
+		Connection cnx = DriverManager.getConnection(url, "postgres", "tca123");
+		System.out.println("Conexгo ao Banco de Dados foi efetuada com sucesso!");
+			StringBuilder cmd = new StringBuilder();
+			cmd.append("select * from \"Encomendas\"");
+			ArrayList<Encomenda> list = new ArrayList<Encomenda>();
+			
+			try {
+
+				PreparedStatement st = cnx.prepareStatement(cmd.toString());
+
+				ResultSet resultList = st.executeQuery();
+				
+				
+				
+				while(resultList.next()){
+				
+					Produto produto1 = getOneProduto(resultList.getString("cdProduto"));
+					
+					String nomeClienteTemp = resultList.getString("nomeCliente");
+					String endEntregaTemp = resultList.getString("endEntrega");
+					double valorTotalTemp = resultList.getDouble("valorTotal");	
+					
+					Encomenda e1 = new Encomenda(nomeClienteTemp, endEntregaTemp, produto1, valorTotalTemp);
+					list.add(e1);
+					
+				}
+
+	
+			} catch (SQLException e) {
+				System.out.println("Houve erro na execuзгo do comando insert");
+				System.out.println(e.getMessage());
+				System.out.println("Cуdigo de erro: " + e.getSQLState());
+			}
+			return list;
+		
+	}
 
 	public Produto getOneProduto(String id) throws ClassNotFoundException, SQLException{
 		String url = "jdbc:postgresql://localhost:5432/trab-prog3";
