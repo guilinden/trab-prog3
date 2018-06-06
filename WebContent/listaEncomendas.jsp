@@ -28,7 +28,7 @@
 		String endereco = "";
 		String cod = "";
 		%>
-		<br><br>
+		<br>
 		<h1>Lista de encomendas</h1>
 		<table>
 		<tr>
@@ -36,6 +36,7 @@
     		<th>Endereco</th> 
     		<th>Codigo Produto</th>
     		<th>Valor Total</th>
+    		<th></th>
     		
  		 </tr>
 		<%
@@ -55,6 +56,7 @@
     		<td><%=endereco%></td> 
     		<td><%=cod%></td>
     		<td><%=preco%></td>
+    		<td><a href="excluirEncomenda.jsp?idEncomenda=<%=e.getIdEncomenda()%>">Exluir</a></td>
   		</tr>
 		
 		

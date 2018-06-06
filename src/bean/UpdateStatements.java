@@ -30,7 +30,7 @@ public class UpdateStatements {
 				
 				boolean status = st.execute();
 
-				System.out.println("O comando insert foi executado com status: " + status);
+				System.out.println("O comando update foi executado com status: " + status);
 			} catch (SQLException e) {
 				System.out.println("Houve erro na execuзгo do comando insert");
 				System.out.println(e.getMessage());
