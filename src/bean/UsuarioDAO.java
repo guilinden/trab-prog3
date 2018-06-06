@@ -89,13 +89,17 @@ public class UsuarioDAO {
 		try {
 
 			StringBuilder cmd = new StringBuilder();
-			cmd.append("insert into \"Usuario\"\n");
+			cmd.append("insert into \"Usuarios\"\n");
 			cmd.append("( \"nome\", \"senha\" )\n");
 			cmd.append("values\n");
 			cmd.append("( ? , ? )");
 			
-			Statement st = cnx.createStatement();
-			boolean status = st.execute( cmd.toString() );
+			PreparedStatement st = cnx.prepareStatement(cmd.toString());
+			st.setString(1, usuario.getNome());
+			st.setString(2, usuario.getSenha());
+			
+			boolean status = st.execute();
+			
 			System.out.println("O comando insert foi executado com status: " + status);
 			 
 		} catch (SQLException e) {
