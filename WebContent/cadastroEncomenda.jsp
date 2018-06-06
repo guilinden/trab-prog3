@@ -22,7 +22,7 @@ String address = request.getParameter("address");
 	<head>
 	</head>
 	<body>
-		<h1>Linden & Co.</h1>
+		<a href="Encomendas.jsp"><h1>Linden & Co.</h1></a>
 		<h3>Guns and Ammo</h3>
 		
 		<h2>Complete sua compra!</h2>
