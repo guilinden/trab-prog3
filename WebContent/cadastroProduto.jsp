@@ -28,8 +28,7 @@ String valor;
 		Valor : <input type="text" name="vlProduto"> <br /> 
 		<input type="submit" value="Submit" />
 		<%
-		if(cdProduto != null && nomeProduto != null && qtEstoque != null && vlProduto != null){
-			
+		if(request.getParameter("submit") != null){
 			try{
 				codProduto = request.getParameter("cdProduto");
 				nmProduto = request.getParameter("nomeProduto");
@@ -57,8 +56,8 @@ String valor;
 		<%
 			}			
 		}
-	
 	%>
+	
 
 		</form>
 </body>
