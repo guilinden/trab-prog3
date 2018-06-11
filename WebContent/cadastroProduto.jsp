@@ -3,10 +3,12 @@
 <%@page import="bean.Produto"%>
 <%@page import="bean.ProdutoDAO"%>
 <%
-String codProduto;
-String nmProduto;
-String qtdEstoque;    
-String valor; 
+String codProduto = request.getParameter("cdProduto");
+String nmProduto = request.getParameter("nomeProduto");
+String qtdEstoque = request.getParameter("qtEstoque");    
+String valor = request.getParameter("vlProduto");
+double valorProduto = 0.0d;
+int quantidadeEstoque = 0;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -26,18 +28,13 @@ String valor;
 		Nome: <input type="text" name="nomeProduto"><br /> 
 		Qt. Estoque <input type="text" name="qtEstoque"> <br /> 
 		Valor : <input type="text" name="vlProduto"> <br /> 
-		<input type="submit" value="Submit" />
+		<input type="submit" value="submit" name="submit"/>
 		<%
 		if(request.getParameter("submit") != null){
 			try{
-				codProduto = request.getParameter("cdProduto");
-				nmProduto = request.getParameter("nomeProduto");
-				qtdEstoque = request.getParameter("qtEstoque");    
-				valor = request.getParameter("vlproduto");
-				
-				Integer quantidadeEstoque = Integer.parseInt(qtdEstoque);
-				Double valorProduto = Double.parseDouble(valor);
-				
+				quantidadeEstoque = Integer.parseInt(qtdEstoque);
+				valorProduto = Double.parseDouble(valor);
+
 				Produto p = new Produto(codProduto, nmProduto, quantidadeEstoque, valorProduto);
 				ProdutoDAO.addProduto(p);
 			}
@@ -59,6 +56,6 @@ String valor;
 	%>
 	
 
-		</form>
+	</form>
 </body>
 </html>

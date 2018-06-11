@@ -15,6 +15,7 @@
 		    	if(request.getParameter("submit") != null){
 		    		String username = request.getParameter("username");
 		    		String password = request.getParameter("password");
+		    		System.out.println("lala");
 		    		Usuario usuario = new Usuario(username,password);
 		    		UsuarioDAO.addUsuario(usuario);
 		    			

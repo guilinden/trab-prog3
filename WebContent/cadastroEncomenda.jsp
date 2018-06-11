@@ -1,5 +1,3 @@
-
-
 <%@page import="bean.ProdutoDAO"%>
 <%@page import="bean.Encomenda"%>
 <%@page import="bean.Produto"%>
