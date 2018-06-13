@@ -71,9 +71,8 @@ td, td {
 			<td><%=nomeProduto%></td>
 			<td><%=qtEstoque%></td>
 			<td><%=valor%></td>
-			<!-- <td><a href="excluirProduto.jsp?cdProduto=<%=p.getCdProduto()%>">Exluir</a></td> -->
-			<!-- <td><a href="editarProduto.jsp?cdProduto=<%=p.getCdProduto()%>">Editar</a></td>  -->
-		</tr>
+			<td><a href="http://localhost:8080/ProjetoFinal/excluirProduto.jsp?cdProduto=<%=p.getCdProduto()%>">Excluir</a></td> 
+			<td><a href="http://localhost:8080/ProjetoFinal/editaProduto.jsp?cdProduto=<%=p.getCdProduto()%>">Editar</a></td>  		</tr>
 
 		<%
 			}

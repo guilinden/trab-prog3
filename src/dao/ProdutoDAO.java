@@ -182,6 +182,7 @@ public class ProdutoDAO {
 				st.setString(1, p.getNomeProduto());
 				st.setInt(2, p.getQtEstoque());
 				st.setDouble(3, p.getValor());
+				st.setString(4, p.getCdProduto());
 				
 				boolean status = st.execute();
 
