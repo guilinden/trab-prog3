@@ -11,10 +11,18 @@
 
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="CSS/estilo.css">
 	</head>
 	<body>
-		<h1>Linden & Co.</h1>
-		<h3>Guns and Ammo</h3>
+		<div id="menu">
+		<a href="Encomendas.jsp" class="menuitem"><h1>Linden & Co.</h1></a>
+		<h3>Armas de fogo</h3>
+		
+			<a href="#home_content" class="menuitem">Home</a>
+			<a href="#about_content" class="menuitem">Sobre</a>
+			<a href="#mission_content" class="menuitem">Missao</a>
+			<a href="mensagem.jsp" class="menuitem">Contato</a>
+		</div>
 		<%
 	
 		
@@ -34,14 +42,13 @@
 				preco = p.getValor();
 				id = p.getCdProduto();
 		%>
-		<form method= "POST">
 		<figure>
 			<img src="http://via.placeholder.com/300x250" id="produto3">
 			<figcaption><%=nome%></figcaption>
-			<figcaption>$<%=preco%></figcaption>
+			<figcaption class="dinheiro">$<%=preco%></figcaption>
 			<figcaption><a href="http://localhost:8080/ProjetoFinal/cadastroEncomenda.jsp?idProduto=<%=id%>">Comprar</a></figcaption>
 		</figure>
-		</form>
+	
 		
 		
 		<%
@@ -51,34 +58,10 @@
 		}
 		
 		%>
-		<a href="mensagem.jsp"><h2>Entre em contato</h2></a>
 
 	</body>
 	
-	<style>
-		img{
-			margin-right: 20px;
-			display: inline-block;
-		}
-		
-		figure {
-			display: inline-block;
-		}
-
-		figure img {
-			vertical-align: top;
-		}
-
-		figure figcaption {
-			text-align: center;
-		}
-
-		figcaption{
-			padding-top: 10px;
-		}
-		
-		
-	</style>
+	
 	
 	
 </html>

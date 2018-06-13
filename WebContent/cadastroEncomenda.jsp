@@ -16,20 +16,33 @@ String address = request.getParameter("address");
 
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="CSS/estilo.css">
 	</head>
 	<body>
-		<a href="Encomendas.jsp"><h1>Linden & Co.</h1></a>
-		<h3>Guns and Ammo</h3>
+		<div id="menu">
+		<a href="Encomendas.jsp" class="menuitem"><h1>Linden & Co.</h1></a>
+		<h3>Armas de fogo</h3>
+		
+			<a href="#home_content" class="menuitem">Home</a>
+			<a href="#about_content" class="menuitem">Sobre</a>
+			<a href="#mission_content" class="menuitem">Missao</a>
+			<a href="mensagem.jsp" class="menuitem">Contato</a>
+		</div>
 		
 		<h2>Complete sua compra!</h2>
 		<h3><%=produto.getNomeProduto()%></h3>
 		<h3>$<%=produto.getValor()%></h3>
 		<form method = "POST">
-			Full name:<input type="text" name="fullName"><br/><br/>
-			Complete address:<input type="text" name="address"><br/><br/>
-			Card Number:<input type="text"><br/><br/>
-			CVC:<input type="text"><br/><br/>
-			Expiration day:<input type="text"><br/><br/>
+			Full name<br>
+			<input type="text" name="fullName"><br/><br/>
+			Complete address<br>
+			<input type="text" name="address"><br/><br/>
+			Card Number<br>
+			<input type="text"><br/><br/>
+			CVC<br>
+			<input type="text"><br/><br/>
+			Expiration day<br>
+			<input type="text"><br/><br/>
 			<input type = "submit" value = "Submit" />
 			<%
 			if(fullName != null && address != null){
