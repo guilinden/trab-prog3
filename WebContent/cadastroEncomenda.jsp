@@ -8,9 +8,6 @@
 
 <%
 String idProduto = request.getParameter("idProduto");
-String quant= request.getParameter("quant");
-int quantidade = Integer.parseInt(quant);
-
 Produto produto = ProdutoDAO.getOneProduto(idProduto);
 
 String fullName = request.getParameter("fullName");
@@ -39,17 +36,10 @@ String address = request.getParameter("address");
 
 				try {
 					
-					Produto p2 = ProdutoDAO.getOneProduto(produto.getCdProduto());
-					if(p2.getQtEstoque() < quantidade) {
-						%><script type="text/javascript">
-						window.alert("Desculpe, não possuímos estoque suficiente");
-						window.location.replace("http://localhost:8080/ProjetoFinal/Encomendas.jsp");
-						</script><%
-					}
-										
+					Produto p2 = ProdutoDAO.getOneProduto(produto.getCdProduto());				
 					Encomenda encomenda = new Encomenda(fullName,address, produto, produto.getValor());
 					EncomendaDAO.addEncomenda(encomenda);
-					ProdutoDAO.deduzirEstoque(produto,quantidade);
+					ProdutoDAO.deduzirEstoque(produto,1);
 					
 				} catch(Exception e) {
 					e.printStackTrace();
