@@ -1,4 +1,4 @@
-<%@page import="bean.EncomendaDAO"%>
+<%@page import="dao.EncomendaDAO"%>
 <%@page import="bean.Encomenda"%>
 <html>
 <%

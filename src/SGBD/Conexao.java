@@ -1,4 +1,4 @@
-package bean.SGBD;
+package SGBD;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -44,7 +44,7 @@ public class Conexao {
 		if( livre ) {
 			livre = false;
 		} else {
-			throw new IOException( "A conexao já está sendo usada" );
+			throw new IOException( "A conexao jï¿½ estï¿½ sendo usada" );
 		}
 	}
 	

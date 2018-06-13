@@ -1,4 +1,4 @@
-<%@page import="bean.MensagemDAO"%>
+<%@page import="dao.MensagemDAO"%>
 <%@page import="bean.Produto"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="bean.Mensagem"%>

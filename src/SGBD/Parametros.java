@@ -1,4 +1,4 @@
-package bean.SGBD;
+package SGBD;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -6,15 +6,15 @@ import java.io.IOException;
 import java.util.Properties;
 
 /*
-   quando algo (atributo ou um método) NAO é estático ele é individualizado
+   quando algo (atributo ou um mï¿½todo) NAO ï¿½ estï¿½tico ele ï¿½ individualizado
    por objeto.  Exemplo:
    
-   Na classe Cliente tem um atributo codigoCPF que NAO é estático,
-   isto significa que cada objeto cliente tem seu próprio cpf;
+   Na classe Cliente tem um atributo codigoCPF que NAO ï¿½ estï¿½tico,
+   isto significa que cada objeto cliente tem seu prï¿½prio cpf;
    
-   Quando é estático, o atributo ou metodo é o mesmo para TODAS as instancias
+   Quando ï¿½ estï¿½tico, o atributo ou metodo ï¿½ o mesmo para TODAS as instancias
    da classe. Por exemplo, na mesma classe Clientes temos um atritubo
-   limiteMaximoDeCredito.  Este atributo deve ser estático pois é o mesmo
+   limiteMaximoDeCredito.  Este atributo deve ser estï¿½tico pois ï¿½ o mesmo
    para TODOS os clientes.  Ou seja, todos os objetos compartilham o mesmo
    atributo.
 */
@@ -22,7 +22,7 @@ public class Parametros {
 
 	private Properties parametros;
 	
-	// Neste caso, esta é a referencia estática do Singleton
+	// Neste caso, esta ï¿½ a referencia estï¿½tica do Singleton
 	private static Parametros mySelf;
 	
 	public static Parametros getInstance() throws IOException {
@@ -35,7 +35,7 @@ public class Parametros {
 		return mySelf;
 	}
 	
-	// Perceba que o construtor é private
+	// Perceba que o construtor ï¿½ private
 	private Parametros() {
 		parametros = new Properties();
 	}

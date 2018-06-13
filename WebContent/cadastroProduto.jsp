@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page import="bean.Produto"%>
-<%@page import="bean.ProdutoDAO"%>
+<%@page import="dao.ProdutoDAO"%>
 <%
 String codProduto = request.getParameter("cdProduto");
 String nmProduto = request.getParameter("nomeProduto");
@@ -18,7 +18,7 @@ int quantidadeEstoque = 0;
 </head>
 <body>
 
-	<h1>Linden & Co;</h1>
+	<h1>Linden & Co.</h1>
 	<h3>Cadastrar Produto</h3>
 
 	<form method="POST">
@@ -48,7 +48,7 @@ int quantidadeEstoque = 0;
 			finally{
 				%><script type="text/javascript">
 					window.alert("Produto cadastrado com sucesso!");
-					window.location.replace("http://localhost:8080/ProjetoFinal/cadastroProduto.jsp");
+					window.location.replace("http://localhost:8080/ProjetoFinal/listaProdutos.jsp");
 				</script>
 		<%
 			}			

@@ -1,4 +1,4 @@
-<%@page import="bean.EncomendaDAO"%>
+<%@page import="dao.EncomendaDAO"%>
 <%@page import="bean.Encomenda"%>
 <html>
 	<head></head>
@@ -45,7 +45,7 @@
 			Endereço: <input type="text" name="endereco" value="<%=e1.getEndEntrega()%>"><br/>
 			<input type="submit" name="submit" value="Submit">
 			<%
-				if(request.getParameter("submit") !=  null){
+				if(request.getParameter("submit") != null){
 					String nomeCliente = request.getParameter("nomeCliente");
 					String endereco = request.getParameter("endereco");
 					e1.setNomeCliente(nomeCliente);

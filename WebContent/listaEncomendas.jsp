@@ -1,6 +1,6 @@
 
 
-<%@page import="bean.EncomendaDAO"%>
+<%@page import="dao.EncomendaDAO"%>
 <%@page import="bean.Produto"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="bean.Encomenda"%>
@@ -70,11 +70,7 @@
 		
 		
 		<%
-			
-			}
-			
-		
-		
+		}
 		%>
 		</table>
 

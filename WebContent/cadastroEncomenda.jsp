@@ -1,10 +1,10 @@
-<%@page import="bean.ProdutoDAO"%>
+<%@page import="dao.ProdutoDAO"%>
 <%@page import="bean.Encomenda"%>
 <%@page import="bean.Produto"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="bean.Produto"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="bean.EncomendaDAO"%>
+<%@page import="dao.EncomendaDAO"%>
 
 <%
 String idProduto = request.getParameter("idProduto");

@@ -1,15 +1,15 @@
-package bean;
+package dao;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import bean.SGBD.Conexao;
-import bean.SGBD.PoolDeConexoes;
+import SGBD.Conexao;
+import SGBD.PoolDeConexoes;
+import bean.Encomenda;
+import bean.Produto;
 
 public class ProdutoDAO {
 	
@@ -41,9 +41,9 @@ public class ProdutoDAO {
 
 				System.out.println("O comando insert foi executado com status: " + status);
 			} catch (SQLException e) {
-				System.out.println("Houve erro na execuзгo do comando insert");
+				System.out.println("Houve erro na execucao do comando insert");
 				System.out.println(e.getMessage());
-				System.out.println("Cуdigo de erro: " + e.getSQLState());
+				System.out.println("Codigo de erro: " + e.getSQLState());
 			}
 		} finally {
 			cnx.libera();
@@ -81,9 +81,9 @@ public class ProdutoDAO {
 
 	
 			} catch (SQLException e) {
-				System.out.println("Houve erro na execuзгo do comando select");
+				System.out.println("Houve erro na execucao do comando select");
 				System.out.println(e.getMessage());
-				System.out.println("Cуdigo de erro: " + e.getSQLState());
+				System.out.println("Codigo de erro: " + e.getSQLState());
 			}finally {
 				cnx.libera();
 			}
@@ -123,9 +123,9 @@ public class ProdutoDAO {
 
 	
 			} catch (SQLException e) {
-				System.out.println("Houve erro na execuзгo do comando insert");
+				System.out.println("Houve erro na execucao do comando insert");
 				System.out.println(e.getMessage());
-				System.out.println("Cуdigo de erro: " + e.getSQLState());
+				System.out.println("Codigo de erro: " + e.getSQLState());
 			}finally {
 				cnx.libera();
 			}
@@ -137,13 +137,7 @@ public class ProdutoDAO {
 
 		PoolDeConexoes pool = PoolDeConexoes.getInstance();
 		Conexao cnx = pool.getConexao();
-		
-
-		
 		try {
-			
-			
-
 			StringBuilder cmd = new StringBuilder();
 			cmd.append("update \"Produtos\"\n");
 			cmd.append("set \"qtEstoque\" = ?\n");
@@ -161,6 +155,70 @@ public class ProdutoDAO {
 				System.out.println("O comando update foi executado com status: " + status);
 			} catch (SQLException e) {
 				System.out.println("Houve erro na execuзгo do comando insert");
+				System.out.println(e.getMessage());
+				System.out.println("Codigo de erro: " + e.getSQLState());
+			}
+		} finally {
+			cnx.libera();
+		}
+	}
+	
+	public static void updateProduto(Produto p) throws ClassNotFoundException, SQLException, IOException {
+
+		PoolDeConexoes pool = PoolDeConexoes.getInstance();
+ 		Conexao cnx = pool.getConexao();
+
+		try {
+
+			StringBuilder cmd = new StringBuilder();
+			cmd.append("update \"Produtos\"\n");
+			cmd.append("set \"nomeProduto\" = ?, \"qtEstoque\" = ?, \"valor\" = ?\n ");
+			cmd.append("where \"cdProduto\" = ?\n");
+
+			try {
+
+				PreparedStatement st = cnx.prepareStatement(cmd.toString());
+
+				st.setString(1, p.getNomeProduto());
+				st.setInt(2, p.getQtEstoque());
+				st.setDouble(3, p.getValor());
+				
+				boolean status = st.execute();
+
+				System.out.println("O comando update foi executado com status: " + status);
+			} catch (SQLException e1) {
+				System.out.println("Houve erro na execucao do comando insert");
+				System.out.println(e1.getMessage());
+				System.out.println("Codigo de erro: " + e1.getSQLState());
+			}
+		} finally {
+			cnx.libera();
+		}
+	}
+	
+
+	public static void deleteProduto(Produto p) throws ClassNotFoundException, SQLException, IOException {
+
+		PoolDeConexoes pool = PoolDeConexoes.getInstance();
+ 		Conexao cnx = pool.getConexao();
+
+		try {
+
+			StringBuilder cmd = new StringBuilder();
+			cmd.append("delete from \"Produtos\"\n");
+			cmd.append("where \"cdProduto\" = ?\n");
+
+			try {
+
+				PreparedStatement st = cnx.prepareStatement(cmd.toString());
+
+				st.setString(1, p.getCdProduto());
+
+				boolean status = st.execute();
+
+				System.out.println("O comando delete foi executado com status: " + status);
+			} catch (SQLException e) {
+				System.out.println("Houve erro na execucao do comando insert");
 				System.out.println(e.getMessage());
 				System.out.println("Codigo de erro: " + e.getSQLState());
 			}

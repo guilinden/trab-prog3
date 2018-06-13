@@ -1,15 +1,15 @@
-package bean;
+package dao;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import bean.SGBD.Conexao;
-import bean.SGBD.PoolDeConexoes;
+import SGBD.Conexao;
+import SGBD.PoolDeConexoes;
+import bean.Encomenda;
+import bean.Produto;
 
 public class EncomendaDAO {
 
